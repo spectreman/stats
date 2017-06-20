@@ -19,4 +19,16 @@ func TestSimpleRegr(t *testing.T) {
 	assert.Equal(s.BetaT(), 1.8233150434037104)
 	assert.Equal(s.Alpha(), 1.2011173184357542)
 	assert.Equal(s.Est(5.0), 4.581005586592179)
+
+	s.Reset()
+	assert.Equal(s.Beta(), 0.0)
+	assert.Equal(s.BetaT(), 0.0)
+	assert.Equal(s.Alpha(), 0.0)
+	assert.Equal(s.Est(5.0), 0.0)
+
+	s.UpdateXY(1.0, 20.0)
+	assert.Equal(s.Beta(), 0.0)
+	assert.Equal(s.BetaT(), 0.0)
+	assert.Equal(s.Alpha(), 20.0)
+	assert.Equal(s.Est(5.0), 20.0)
 }
