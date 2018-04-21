@@ -39,3 +39,25 @@ func (m *Median) Med() float64 {
 	// Even Size
 	return 0.5 * (m.values[(n/2)-1] + m.values[(n/2)])
 }
+
+// Percentile returns the largest value less than or equal to the highest
+// (1-p) portion of the data..
+func (m *Median) Percentile(p float64) float64 {
+
+	if len(m.values) == 0 {
+		return 0.0
+	}
+
+	n := len(m.values)
+	index := int(p * float64(n))
+
+	if index < 0 {
+		return m.values[0]
+	}
+
+	if index >= n {
+		return m.values[n-1]
+	}
+
+	return m.values[index]
+}
